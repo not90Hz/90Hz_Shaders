@@ -1,50 +1,67 @@
 //Made by 90Hz with the Amplify Shader Editor in Unity 2018 at the 2022.06.02
-Shader "90Hz/Aptical v1.3"
+Shader "90Hz/Aptical v1.4"
 {
 	Properties
 	{
 		[HideInInspector] shader_is_using_thry_editor("", Float) = 0
-		[HideInInspector] shader_master_label("<color=#8100FF><b>90Hz Aptical Shader v1.3</b></color>", Float) = 0
+		[HideInInspector] shader_master_label("<color=#8100FF><b>90Hz Aptical Shader v1.4</b></color>", Float) = 0
 		[Helpbox]_WarnBox("Public Shader | Based on the old Equation Shader", Float) = 0
 		[HideInInspector] m_start_shader("Shader Settings --{is_hideable:true}", Float) = 0
 			[HideInInspector] m_start_main("Main Options --{is_hideable:true}", Float) = 0
 				[HDR]_MainColor("Main Color", Color) = (1,1,1,0)
+				_LerpMainTexHue("Lerp MainTex Hue", Range(0 , 1)) = 0
+				_MainTexHueSaturation("MainTex Hue Saturation", Float) = 1
+				_MainTexHueValue("MainTex Hue Value", Float) = 1
+				_MainTexHueSpeed("MainTex Hue Speed", Float) = 0
 				[NoScaleOffset][SingleLineTexture]_MainTex("MainTex", 2D) = "white" {}
+				_LerpMainTexAlpha("Lerp MainTex Alpha", Range(0 , 1)) = 0
 				_MainTilingandOffset("Main Tiling and Offset", Vector) = (1,1,0,0)
 				_CutoutStrength("Cutout Strength", Float) = 0
 				[KeywordEnum(Vertex,Clip,Tangent)] _MainRendering("Main Rendering", Float) = 0
 			[HideInInspector] m_end_main("Main Options", Float) = 0
 			[HideInInspector] m_start_light("Light Options --{is_hideable:true}", Float) = 0
 				[KeywordEnum(On,Off)] _ToggleCustomLighting("Toggle CustomLighting", Float) = 0
-				_CustomLightingStrength("CustomLighting Strength", Range(0 , 1)) = 0.5
+				_CustomLightingStrength("CustomLighting Strength", Range(0 , 1)) = 0.25
 			[HideInInspector] m_end_light("Light Options", Float) = 0
 			[HideInInspector] m_start_rimlight("RimLight Options --{is_hideable:true}", Float) = 0
 				[KeywordEnum(On,Off)] _ToggleRimLight("Toggle RimLight", Float) = 1
-				[HDR]_RimColor("Rim Color", Color) = (0,1,0,0)
-				_RimPower("Rim Power", Range(0 , 10)) = 0
-				_RimOffset("Rim Offset", Float) = 0
+				[HDR]_RimLightColor("RimLight Color", Color) = (0,1,0.8758622,0)
+				_LerpRimLightHue("Lerp RimLight Hue", Range(0 , 1)) = 0
+				_RimLightHueSaturation("RimLight Hue Saturation", Float) = 1
+				_RimLightHueValue("RimLight Hue Value", Float) = 1
+				_RimLightHueSpeed("RimLight Hue Speed", Float) = 0
+				_RimLightPower("RimLight Power", Range(0 , 10)) = 0.5
+				_RimLightOffset("RimLight Offset", Float) = 0.24
 			[HideInInspector] m_end_rimlight("RimLight Options", Float) = 0
 			[HideInInspector] m_start_overlay("Overlay Options --{is_hideable:true}", Float) = 0
-				[KeywordEnum(On,Off)] _ToggleOverlayDiffuse("Toggle Overlay Diffuse", Float) = 1
-				[KeywordEnum(Diffuse,Emission)] _OverlayLayerRendering("Overlay Layer Rendering", Float) = 0
+				_LerpOverlay("Lerp Overlay", Range(0 , 1)) = 0
 				[HDR]_OverlayColor("Overlay Color", Color) = (1,1,1,0)
+				_OverlayHueSaturation("Overlay Hue Saturation", Float) = 1
+				_OverlayHueValue("Overlay Hue Value", Float) = 1
+				_OverlayHueSpeed("Overlay Hue Speed", Float) = 0
 				[NoScaleOffset][SingleLineTexture]_OverlayTex("OverlayTex", 2D) = "white" {}
+				_LerpOverlayTexAlpha("Lerp OverlayTex Alpha", Range(0 , 1)) = 0
 				_OverlayTilingandOffset("Overlay Tiling and Offset", Vector) = (1,1,0,0)
 				[KeywordEnum(On,Off)] _ToggleOverlaySpeed("Toggle Overlay Speed", Float) = 1
 				_OverlaySpeed("Overlay Speed", Vector) = (0,0,0,0)
 				[KeywordEnum(Vertex,Clip,Tangent)] _OverlayRendering("Overlay Rendering", Float) = 0
-				[KeywordEnum(On,Off)] _ToggleOverlayFlicker("Toggle Overlay Flicker", Float) = 1
+				_LerpOverlayFlicker("Lerp Overlay Flicker", Range(0 , 1)) = 0
 				_OverlayFlickerAmplitude("Overlay Flicker Amplitude", Float) = 1
-				_OverlayFlickerOffset("Overlay Flicker Offset", Float) = 0.5
+				_OverlayFlickerOffset("Overlay Flicker Offset", Float) = 0
 				_OverlayFlickerSpeed("Overlay Flicker Speed", Float) = 1
 			[HideInInspector] m_end_overlay("Overlay Options", Float) = 0
 			[HideInInspector] m_start_outline("Outline Options --{is_hideable:true}", Float) = 0
-				[HDR]_OutlineColor("Outline Color", Color) = (0,0,0,0)
+				_OutlineAlpha("Outline Alpha", Range(0 , 1)) = 0
 				_OutliceScale("Outlice Scale", Float) = 0
-				_OutlineAlpha("Outline Alpha", Range( 0 , 1)) = 0
+				[HDR]_OutlineColor("Outline Color", Color) = (0,0,0,0)
+				_LerpOverlayHue("Lerp Overlay Hue", Range(0 , 1)) = 0
+				_LerpOutlineHue("Lerp Outline Hue", Range(0 , 1)) = 0
+				_OutlineHueSaturation("Outline Hue Saturation", Float) = 1
+				_OutlineHueValue("Outline Hue Value", Float) = 1
+				_OutlineHueSpeed("Outline Hue Speed", Float) = 0
 			[HideInInspector] m_end_outline("Outline Options", Float) = 0
 			[HideInInspector] m_start_rendering("Rendering Options --{is_hideable:true}", Float) = 0
-				[Enum(Back,0,Front,1,Off,2)]_CullMode("Cull Mode", Float) = 2
+				[Enum(Off,0,Front,1,Back,2)]_CullMode("Cull Mode", Float) = 2
 				[Enum(On,0,Off,1)]_ZWriteMode("ZWrite Mode", Float) = 1
 				[Enum(Less,0,Greater,1,Less or Equal,2,Greater or Equal,3,Equal,4,Not Equal,5,Always,6)]_ZTestMode("ZTest Mode", Float) = 2
 				[IntRange]_StencilReference("Stencil Reference", Range(0 , 255)) = 0
@@ -57,7 +74,7 @@ Shader "90Hz/Aptical v1.3"
 			[HideInInspector] m_end_rendering("Rendering Options", Float) = 0
 		[HideInInspector] m_end_shader("Shader Settings", Float) = 0
 
-		[HideInInspector] footer_discord("{texture:{name:DiscordIcon,height:32},action:{type:URL,data:https://discord.gg/w2jwhn5hj4},hover:My Discord Server}", Float) = 0
+		[HideInInspector] footer_discord("{texture:{name:DiscordIcon,height:32},action:{type:URL,data:https://discord.gg/8TtTX8kWwe},hover:My Discord Server}", Float) = 0
 		
 		[HideInInspector] _texcoord("", 2D) = "white" {}
 		[HideInInspector] __dirty("", Int) = 1
@@ -80,7 +97,10 @@ Shader "90Hz/Aptical v1.3"
 		inline half4 LightingOutline( SurfaceOutput s, half3 lightDir, half atten ) { return half4 ( 0,0,0, s.Alpha); }
 		void outlineSurf( Input i, inout SurfaceOutput o )
 		{
-			o.Emission = _OutlineColor.rgb;
+			float mulTime217 = _Time.y * _OutlineHueSpeed;
+			float3 hsvTorgb226 = HSVToRGB( float3(mulTime217,_OutlineHueSaturation,_OutlineHueValue) );
+			float4 lerpResult205 = lerp( _OutlineColor , float4( hsvTorgb226 , 0.0 ) , _LerpOutlineHue);
+			o.Emission = lerpResult205.rgb;
 			o.Alpha = _OutlineAlpha;
 		}
 		ENDCG
@@ -107,11 +127,8 @@ Shader "90Hz/Aptical v1.3"
 		#include "UnityCG.cginc"
 		#include "Lighting.cginc"
 		#pragma target 3.0
-		#pragma shader_feature _OVERLAYLAYERRENDERING_DIFFUSE _OVERLAYLAYERRENDERING_EMISSION
-		#pragma shader_feature _TOGGLEOVERLAYFLICKER_ON _TOGGLEOVERLAYFLICKER_OFF
 		#pragma shader_feature _TOGGLEOVERLAYSPEED_ON _TOGGLEOVERLAYSPEED_OFF
 		#pragma shader_feature _OVERLAYRENDERING_VERTEX _OVERLAYRENDERING_CLIP _OVERLAYRENDERING_TANGENT
-		#pragma shader_feature _TOGGLEOVERLAYDIFFUSE_ON _TOGGLEOVERLAYDIFFUSE_OFF
 		#pragma shader_feature _MAINRENDERING_VERTEX _MAINRENDERING_CLIP _MAINRENDERING_TANGENT
 		#pragma shader_feature _TOGGLECUSTOMLIGHTING_ON _TOGGLECUSTOMLIGHTING_OFF
 		#pragma shader_feature _TOGGLERIMLIGHT_ON _TOGGLERIMLIGHT_OFF
@@ -144,13 +161,6 @@ Shader "90Hz/Aptical v1.3"
 			UnityGIInput GIData;
 		};
 
-		uniform sampler2D _OverlayTex;
-		uniform float4 _OverlayTilingandOffset;
-		uniform float2 _OverlaySpeed;
-		uniform float _OverlayFlickerSpeed;
-		uniform float _OverlayFlickerAmplitude;
-		uniform float _OverlayFlickerOffset;
-		uniform float4 _OverlayColor;
 		uniform float _CullMode;
 		uniform float _ZWriteMode;
 		uniform float _ZTestMode;
@@ -161,17 +171,52 @@ Shader "90Hz/Aptical v1.3"
 		uniform float _StencilPassFront;
 		uniform float _StencilFailFront;
 		uniform float _StencilZFailFront;
+		uniform sampler2D _OverlayTex;
+		uniform float4 _OverlayTilingandOffset;
+		uniform float2 _OverlaySpeed;
+		uniform float _LerpOverlayTexAlpha;
+		uniform float _OverlayFlickerSpeed;
+		uniform float _OverlayFlickerAmplitude;
+		uniform float _OverlayFlickerOffset;
+		uniform float _LerpOverlayFlicker;
+		uniform float4 _OverlayColor;
+		uniform float _OverlayHueSpeed;
+		uniform float _OverlayHueSaturation;
+		uniform float _OverlayHueValue;
+		uniform float _LerpOverlayHue;
+		uniform float _LerpOverlay;
 		uniform sampler2D _MainTex;
 		uniform float _CutoutStrength;
 		uniform float4 _MainTilingandOffset;
+		uniform float _LerpMainTexAlpha;
 		uniform float4 _MainColor;
+		uniform float _MainTexHueSpeed;
+		uniform float _MainTexHueSaturation;
+		uniform float _MainTexHueValue;
+		uniform float _LerpMainTexHue;
 		uniform float _CustomLightingStrength;
-		uniform float _RimOffset;
-		uniform float _RimPower;
-		uniform float4 _RimColor;
+		uniform float _RimLightOffset;
+		uniform float _RimLightPower;
+		uniform float4 _RimLightColor;
+		uniform float _RimLightHueSpeed;
+		uniform float _RimLightHueSaturation;
+		uniform float _RimLightHueValue;
+		uniform float _LerpRimLightHue;
 		uniform float4 _OutlineColor;
+		uniform float _OutlineHueSpeed;
+		uniform float _OutlineHueSaturation;
+		uniform float _OutlineHueValue;
+		uniform float _LerpOutlineHue;
 		uniform float _OutlineAlpha;
 		uniform float _OutliceScale;
+
+
+		float3 HSVToRGB( float3 c )
+		{
+			float4 K = float4( 1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0 );
+			float3 p = abs( frac( c.xxx + K.xyz ) * 6.0 - K.www );
+			return c.z * lerp( K.xxx, saturate( p - K.xxx ), c.y );
+		}
 
 
 		struct Gradient
@@ -282,55 +327,12 @@ Shader "90Hz/Aptical v1.3"
 			#endif
 			float2 appendResult69 = (float2(_MainTilingandOffset.x , _MainTilingandOffset.y));
 			float2 appendResult70 = (float2(_MainTilingandOffset.z , _MainTilingandOffset.w));
-			float4 temp_output_38_0 = ( tex2D( _MainTex, (staticSwitch40*float3( appendResult69 ,  0.0 ) + float3( appendResult70 ,  0.0 )).xy ) * _MainColor );
-			float3 objectToClipDir87 = mul(UNITY_MATRIX_VP, mul(unity_ObjectToWorld, float4(ase_worldViewDir, 0.0)));
-			float3 objectToTangentDir88 = mul( ase_worldToTangent, mul( unity_ObjectToWorld, float4( ase_worldViewDir, 0 ) ).xyz);
-			#if defined(_OVERLAYRENDERING_VERTEX)
-				float3 staticSwitch92 = float3( i.uv_texcoord ,  0.0 );
-			#elif defined(_OVERLAYRENDERING_CLIP)
-				float3 staticSwitch92 = objectToClipDir87;
-			#elif defined(_OVERLAYRENDERING_TANGENT)
-				float3 staticSwitch92 = objectToTangentDir88;
-			#else
-				float3 staticSwitch92 = float3( i.uv_texcoord ,  0.0 );
-			#endif
-			float2 appendResult91 = (float2(_OverlayTilingandOffset.x , _OverlayTilingandOffset.y));
-			float2 appendResult90 = (float2(_OverlayTilingandOffset.z , _OverlayTilingandOffset.w));
-			float3 temp_output_93_0 = (staticSwitch92*float3( appendResult91 ,  0.0 ) + float3( appendResult90 ,  0.0 ));
-			float mulTime114 = _Time.y * _OverlaySpeed.x;
-			float mulTime112 = _Time.y * _OverlaySpeed.y;
-			float2 appendResult113 = (float2(mulTime114 , mulTime112));
-			#if defined(_TOGGLEOVERLAYSPEED_ON)
-				float3 staticSwitch116 = ( float3( appendResult113 ,  0.0 ) + temp_output_93_0 );
-			#elif defined(_TOGGLEOVERLAYSPEED_OFF)
-				float3 staticSwitch116 = temp_output_93_0;
-			#else
-				float3 staticSwitch116 = temp_output_93_0;
-			#endif
-			float4 tex2DNode73 = tex2D( _OverlayTex, staticSwitch116.xy );
-			float mulTime97 = _Time.y * _OverlayFlickerSpeed;
-			#if defined(_TOGGLEOVERLAYFLICKER_ON)
-				float4 staticSwitch108 = ( tex2DNode73 * (( sin( mulTime97 ) / 2.0 )*_OverlayFlickerAmplitude + _OverlayFlickerOffset) );
-			#elif defined(_TOGGLEOVERLAYFLICKER_OFF)
-				float4 staticSwitch108 = tex2DNode73;
-			#else
-				float4 staticSwitch108 = tex2DNode73;
-			#endif
-			float4 temp_output_74_0 = ( staticSwitch108 * _OverlayColor );
-			#if defined(_TOGGLEOVERLAYDIFFUSE_ON)
-				float4 staticSwitch80 = ( temp_output_38_0 + temp_output_74_0 );
-			#elif defined(_TOGGLEOVERLAYDIFFUSE_OFF)
-				float4 staticSwitch80 = temp_output_38_0;
-			#else
-				float4 staticSwitch80 = temp_output_38_0;
-			#endif
-			#if defined(_OVERLAYLAYERRENDERING_DIFFUSE)
-				float4 staticSwitch71 = staticSwitch80;
-			#elif defined(_OVERLAYLAYERRENDERING_EMISSION)
-				float4 staticSwitch71 = temp_output_38_0;
-			#else
-				float4 staticSwitch71 = staticSwitch80;
-			#endif
+			float4 tex2DNode27 = tex2D( _MainTex, (staticSwitch40*float3( appendResult69 ,  0.0 ) + float3( appendResult70 ,  0.0 )).xy );
+			float4 temp_cast_14 = (tex2DNode27.a).xxxx;
+			float4 lerpResult256 = lerp( tex2DNode27 , temp_cast_14 , _LerpMainTexAlpha);
+			float mulTime240 = _Time.y * _MainTexHueSpeed;
+			float3 hsvTorgb239 = HSVToRGB( float3(mulTime240,_MainTexHueSaturation,_MainTexHueValue) );
+			float4 lerpResult244 = lerp( _MainColor , float4( hsvTorgb239 , 0.0 ) , _LerpMainTexHue);
 			Gradient gradient117 = NewGradient( 0, 3, 2, float4( 0, 0, 0, 0 ), float4( 0, 0, 0, 0.1294118 ), float4( 1, 1, 1, 1 ), 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 			#if defined(LIGHTMAP_ON) && UNITY_VERSION < 560 //aseld
 			float3 ase_worldlightDir = 0;
@@ -338,15 +340,15 @@ Shader "90Hz/Aptical v1.3"
 			float3 ase_worldlightDir = normalize( UnityWorldSpaceLightDir( ase_worldPos ) );
 			#endif //aseld
 			float dotResult11 = dot( ase_worldNormal , ase_worldlightDir );
-			float4 temp_cast_24 = (( 1.0 - _CustomLightingStrength )).xxxx;
-			float4 temp_cast_25 = (( 1.0 - _CustomLightingStrength )).xxxx;
-			float4 temp_cast_26 = (1.0).xxxx;
+			float4 temp_cast_16 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float4 temp_cast_17 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float4 temp_cast_18 = (1.0).xxxx;
 			#if defined(_TOGGLECUSTOMLIGHTING_ON)
-				float4 staticSwitch81 = max( SampleGradient( gradient117, saturate( (dotResult11*0.5 + 0.5) ) ) , temp_cast_24 );
+				float4 staticSwitch81 = max( SampleGradient( gradient117, saturate( (dotResult11*0.5 + 0.5) ) ) , temp_cast_16 );
 			#elif defined(_TOGGLECUSTOMLIGHTING_OFF)
-				float4 staticSwitch81 = temp_cast_26;
+				float4 staticSwitch81 = temp_cast_18;
 			#else
-				float4 staticSwitch81 = max( SampleGradient( gradient117, saturate( (dotResult11*0.5 + 0.5) ) ) , temp_cast_24 );
+				float4 staticSwitch81 = max( SampleGradient( gradient117, saturate( (dotResult11*0.5 + 0.5) ) ) , temp_cast_16 );
 			#endif
 			#if defined(LIGHTMAP_ON) && ( UNITY_VERSION < 560 || ( defined(LIGHTMAP_SHADOW_MIXING) && !defined(SHADOWS_SHADOWMASK) && defined(SHADOWS_SCREEN) ) )//aselc
 			float4 ase_lightColor = 0;
@@ -357,15 +359,15 @@ Shader "90Hz/Aptical v1.3"
 			float3 diffNorm18 = ase_worldNormal;
 			gi18 = UnityGI_Base( data, 1, diffNorm18 );
 			float3 indirectDiffuse18 = gi18.indirect.diffuse + diffNorm18 * 0.0001;
-			float4 temp_cast_28 = (( 1.0 - _CustomLightingStrength )).xxxx;
-			float4 temp_cast_30 = (( 1.0 - _CustomLightingStrength )).xxxx;
-			float4 temp_cast_31 = (1.0).xxxx;
+			float4 temp_cast_20 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float4 temp_cast_22 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float4 temp_cast_23 = (1.0).xxxx;
 			#if defined(_TOGGLECUSTOMLIGHTING_ON)
-				float4 staticSwitch172 = max( ( ase_lightColor * float4( ( indirectDiffuse18 + ase_lightAtten ) , 0.0 ) ) , temp_cast_28 );
+				float4 staticSwitch172 = max( ( ase_lightColor * float4( ( indirectDiffuse18 + ase_lightAtten ) , 0.0 ) ) , temp_cast_20 );
 			#elif defined(_TOGGLECUSTOMLIGHTING_OFF)
-				float4 staticSwitch172 = temp_cast_31;
+				float4 staticSwitch172 = temp_cast_23;
 			#else
-				float4 staticSwitch172 = max( ( ase_lightColor * float4( ( indirectDiffuse18 + ase_lightAtten ) , 0.0 ) ) , temp_cast_28 );
+				float4 staticSwitch172 = max( ( ase_lightColor * float4( ( indirectDiffuse18 + ase_lightAtten ) , 0.0 ) ) , temp_cast_20 );
 			#endif
 			#if defined(_TOGGLECUSTOMLIGHTING_ON)
 				float staticSwitch83 = ( ase_lightAtten * dotResult11 );
@@ -375,23 +377,26 @@ Shader "90Hz/Aptical v1.3"
 				float staticSwitch83 = ( ase_lightAtten * dotResult11 );
 			#endif
 			float dotResult5 = dot( ase_worldNormal , ase_worldViewDir );
-			float4 temp_cast_32 = (( 1.0 - _CustomLightingStrength )).xxxx;
-			float4 temp_cast_33 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float mulTime249 = _Time.y * _RimLightHueSpeed;
+			float3 hsvTorgb251 = HSVToRGB( float3(mulTime249,_RimLightHueSaturation,_RimLightHueValue) );
+			float4 lerpResult245 = lerp( _RimLightColor , float4( hsvTorgb251 , 0.0 ) , _LerpRimLightHue);
+			float4 temp_cast_25 = (( 1.0 - _CustomLightingStrength )).xxxx;
+			float4 temp_cast_26 = (( 1.0 - _CustomLightingStrength )).xxxx;
 			#if defined(_TOGGLECUSTOMLIGHTING_ON)
-				float4 staticSwitch195 = ( _RimColor * max( ase_lightColor , temp_cast_32 ) );
+				float4 staticSwitch195 = ( lerpResult245 * max( ase_lightColor , temp_cast_25 ) );
 			#elif defined(_TOGGLECUSTOMLIGHTING_OFF)
-				float4 staticSwitch195 = _RimColor;
+				float4 staticSwitch195 = lerpResult245;
 			#else
-				float4 staticSwitch195 = ( _RimColor * max( ase_lightColor , temp_cast_32 ) );
+				float4 staticSwitch195 = ( lerpResult245 * max( ase_lightColor , temp_cast_25 ) );
 			#endif
 			#if defined(_TOGGLERIMLIGHT_ON)
-				float4 staticSwitch61 = ( saturate( ( staticSwitch83 * pow( ( 1.0 - saturate( ( dotResult5 + _RimOffset ) ) ) , _RimPower ) ) ) * staticSwitch195 );
+				float4 staticSwitch61 = ( saturate( ( staticSwitch83 * pow( ( 1.0 - saturate( ( dotResult5 + _RimLightOffset ) ) ) , _RimLightPower ) ) ) * staticSwitch195 );
 			#elif defined(_TOGGLERIMLIGHT_OFF)
 				float4 staticSwitch61 = float4( 0,0,0,0 );
 			#else
 				float4 staticSwitch61 = float4( 0,0,0,0 );
 			#endif
-			c.rgb = ( ( ( staticSwitch71 * staticSwitch81 ) * staticSwitch172 ) + staticSwitch61 ).rgb;
+			c.rgb = ( ( ( ( lerpResult256 * lerpResult244 ) * staticSwitch81 ) * staticSwitch172 ) + staticSwitch61 ).rgb;
 			c.a = 1;
 			clip( lerpResult170 - _CutoutStrength );
 			return c;
@@ -406,8 +411,7 @@ Shader "90Hz/Aptical v1.3"
 		{
 			o.SurfInput = i;
 			o.Normal = float3(0,0,1);
-			float4 temp_cast_0 = (0.0).xxxx;
-			float4 temp_cast_1 = (0.0).xxxx;
+			float lerpResult174 = lerp( 0.0 , ( _CullMode + _ZWriteMode + _ZTestMode + ( _StencilReference + _StencilReadMask + _StencilWriteMask + ( _StencilComparison + _StencilPassFront + _StencilFailFront + _StencilZFailFront ) ) ) , 0.0);
 			float3 ase_worldPos = i.worldPos;
 			float3 ase_worldViewDir = normalize( UnityWorldSpaceViewDir( ase_worldPos ) );
 			float3 objectToClipDir87 = mul(UNITY_MATRIX_VP, mul(unity_ObjectToWorld, float4(ase_worldViewDir, 0.0)));
@@ -432,32 +436,23 @@ Shader "90Hz/Aptical v1.3"
 			float mulTime112 = _Time.y * _OverlaySpeed.y;
 			float2 appendResult113 = (float2(mulTime114 , mulTime112));
 			#if defined(_TOGGLEOVERLAYSPEED_ON)
-				float3 staticSwitch116 = ( float3( appendResult113 ,  0.0 ) + temp_output_93_0 );
+				float3 staticSwitch116 = ( float3( ( appendResult113 * -0.1 ) ,  0.0 ) + temp_output_93_0 );
 			#elif defined(_TOGGLEOVERLAYSPEED_OFF)
 				float3 staticSwitch116 = temp_output_93_0;
 			#else
 				float3 staticSwitch116 = temp_output_93_0;
 			#endif
 			float4 tex2DNode73 = tex2D( _OverlayTex, staticSwitch116.xy );
+			float4 temp_cast_6 = (tex2DNode73.a).xxxx;
+			float4 lerpResult254 = lerp( tex2DNode73 , temp_cast_6 , _LerpOverlayTexAlpha);
 			float mulTime97 = _Time.y * _OverlayFlickerSpeed;
-			#if defined(_TOGGLEOVERLAYFLICKER_ON)
-				float4 staticSwitch108 = ( tex2DNode73 * (( sin( mulTime97 ) / 2.0 )*_OverlayFlickerAmplitude + _OverlayFlickerOffset) );
-			#elif defined(_TOGGLEOVERLAYFLICKER_OFF)
-				float4 staticSwitch108 = tex2DNode73;
-			#else
-				float4 staticSwitch108 = tex2DNode73;
-			#endif
-			float4 temp_output_74_0 = ( staticSwitch108 * _OverlayColor );
-			#if defined(_OVERLAYLAYERRENDERING_DIFFUSE)
-				float4 staticSwitch72 = temp_cast_0;
-			#elif defined(_OVERLAYLAYERRENDERING_EMISSION)
-				float4 staticSwitch72 = temp_output_74_0;
-			#else
-				float4 staticSwitch72 = temp_cast_0;
-			#endif
-			float4 temp_cast_8 = (( _CullMode + _ZWriteMode + _ZTestMode + ( _StencilReference + _StencilReadMask + _StencilWriteMask + ( _StencilComparison + _StencilPassFront + _StencilFailFront + _StencilZFailFront ) ) )).xxxx;
-			float4 lerpResult174 = lerp( staticSwitch72 , temp_cast_8 , float4( 0,0,0,0 ));
-			o.Emission = lerpResult174.rgb;
+			float temp_output_107_0 = (( sin( mulTime97 ) / 2.0 )*_OverlayFlickerAmplitude + ( _OverlayFlickerOffset + _OverlayFlickerAmplitude ));
+			float4 lerpResult202 = lerp( lerpResult254 , ( lerpResult254 * temp_output_107_0 ) , _LerpOverlayFlicker);
+			float mulTime234 = _Time.y * _OverlayHueSpeed;
+			float3 hsvTorgb237 = HSVToRGB( float3(mulTime234,_OverlayHueSaturation,_OverlayHueValue) );
+			float4 lerpResult231 = lerp( _OverlayColor , float4( hsvTorgb237 , 0.0 ) , _LerpOverlayHue);
+			float4 lerpResult203 = lerp( float4( 0,0,0,0 ) , ( lerpResult202 * lerpResult231 ) , _LerpOverlay);
+			o.Emission = ( lerpResult174 + lerpResult203 ).rgb;
 		}
 
 		ENDCG
